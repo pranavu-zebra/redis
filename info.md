@@ -12,6 +12,12 @@
 
 - Seats on top of tradinal db that means one can cache more often data to increase the speed.
 
+- The setup 
+![the setup image](image.png)
+
+- Convention to write Key, Value
+![key-convention-image](image-1.png)
+
 ## Install
 
 - EASY on mac and linux
@@ -40,8 +46,12 @@ redis-cli  #(in the next tab)
 ```
 ## Commands
 
-1. set key value
+### <u>Strings</u>
+
+1. set entity:key value
+2. SETNX - stores a string value only if the key doesn't already exist. Useful for implementing locks.
 2. get key // values are always stored as a string in redis
+3. mget - multitple get
 3. del key
 4. exists key
 5. keys * // cmd to find all the keys in db
@@ -52,8 +62,14 @@ redis-cli  #(in the next tab)
 8. expire key 10 // 10 is the time in seconds to live
     - op: -2 it is deleted | gone
 9. setex key time value
+10. counter: used to check how many people visited the website
+    - set cnt value; 
+    - incr key
+    - incrby key value
 
-## Lists(Array)
+### <u>Lists(Array)</u>
+
+- can also be used as STACK and QUEUES.
 
 1. Add an item (lpush - left/start push)
 - lpush key value
@@ -63,8 +79,12 @@ redis-cli  #(in the next tab)
 - lrange key start_pos end_pos
 4. pop out elements
 - lpop key/rpop key
+5. Length of the list
+- llen key
+6. Blocking POP, wait till the specified time to pop an element provided the list is empty; else works as normal pop
+- blpop key time
 
-## Sets(Unique Array)
+### <u>Sets(Unique Array)</u>
 
 1 Add an item in a set
 - SADD KEY VALUE
@@ -75,7 +95,7 @@ redis-cli  #(in the next tab)
 3.Print all values
 - SMEMBERS KEY
 
-## Hashes
+### <u>Hashes</u>
 - Kind of like JSON Object obj{ {key-val},{key-va} }
 
 1. Add
@@ -86,3 +106,47 @@ redis-cli  #(in the next tab)
 - HEXISTS KEY FIELD
 4. Print
 - HGETALL key
+
+### <u>Sorted Sets (Priority Queue)</u>
+- sorted and ordered
+- each key has a priority associated with it.
+- prefix used is 'z'
+1. Add
+- zadd key rank value
+2. print
+- zrange key start_pos end_pos
+3. reverse print
+- zrevrange key 0 -1
+4. rank of given value // ranking starts form 0
+- zrank key value
+
+
+### <u>Redis Streams</u>
+
+Continuous data generation per unit of time
+
+- Event sourcing (e.g., tracking user actions, clicks, etc.)
+- Sensor monitoring (e.g., readings from devices in the field)
+- Notifications (e.g., storing a record of each user's notifications in a separate stream)
+
+### <u>Geospatial Data</u>
+
+Redis geospatial indexes let you store coordinates and search for them. This data structure is useful for finding nearby points within a given radius or bounding box.
+Input as:
+- Longitude
+- Lattitude
+- Radius
+
+GEOADD
+- GEOADD KEY FROMLANLAT LANG_DATA LAT_DATA BYRADIUS RAD_DATA WITHDIST
+
+GEOSEARCH
+
+### <u>BITMAPS</u>
+- SENSOR'S DATA
+### <u>TIMESERIES</u>
+- STOCKS
+
+## Pub/Sub
+
+Publish/Subscibe/Unsubscribe
