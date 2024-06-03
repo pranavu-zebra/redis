@@ -1,4 +1,4 @@
-const client = require('./client')
+const client = require('./1_client')
 
 async function init(){
     await client.setex('user:10',1, 'rahul')
