@@ -44,6 +44,21 @@ redis-server
 redis-cli  #(in the next tab)
 ```
 
+## How to get started
+
+First spin up a terminal and start the redis server
+```bash
+redis-cli
+```
+Then, navigate to 2_server.js and start it
+```bash
+node 2_server.js
+```
+To stop the redis server
+```bash
+redis-cli shutdown
+```
+
 ## Commands
 
 ### <u>Strings</u>
