@@ -50,7 +50,7 @@ First spin up a terminal and start the redis server
 ```bash
 redis-cli
 ```
-Then, navigate to 2_server.js and start it
+Then spin up another terminal and navigate to 2_server.js and start it
 ```bash
 node 2_server.js
 ```
