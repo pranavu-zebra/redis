@@ -56,7 +56,7 @@ node 2_server.js
 ```
 To stop the redis server
 ```bash
-redis-cli shutdown
+exit
 ```
 
 ## Commands
